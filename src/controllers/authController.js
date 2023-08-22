@@ -7,6 +7,9 @@ const register = async (request, h) => {
     const user = await authServices.register(email, password);
     return h.response(user).code(200);
   } catch (error) {
+    if(Boom.isBoom(error)) {
+      return error;
+    }
     return Boom.badRequest(error.message);
   }
 };
@@ -17,6 +20,9 @@ const login = async (request, h) => {
     const token = await authServices.login(email, password);
     return h.response(token).code(200);
   } catch (error) {
+    if(Boom.isBoom(error)) {
+      return error;
+    }
     return Boom.badRequest(error.message);
   }
 };
@@ -27,6 +33,9 @@ const validate = async (request, h) => {
     const verifiedStatus = await authServices.validate(token);
     return h.response(verifiedStatus).code(200);
   } catch (error) {
+    if(Boom.isBoom(error)) {
+      return error;
+    }
     return Boom.badRequest(error.message);
   }
 };

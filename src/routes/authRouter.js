@@ -29,7 +29,7 @@ const authRoutes = [
     options: {
       validate: {
         headers: Joi.object({
-          authorization: Joi.string().required(), // Validate the 'authorization' header as a string
+          authorization: Joi.string().required(),
         }).options({ allowUnknown: true }),
       },
     },
