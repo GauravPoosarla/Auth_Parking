@@ -24,7 +24,7 @@ const authRoutes = [
     handler: authController.login,
   },
   {
-    method: 'POST',
+    method: 'GET',
     path: '/validate',
     options: {
       validate: {
