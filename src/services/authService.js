@@ -15,9 +15,10 @@ const register = async (email, password) => {
     throw Boom.badRequest('User already exists');
   }
 
-  db.User.create({
+  await db.User.create({
     email,
     password: bcrypt.hashSync(password, 10),
+    role: 'user',
   });
   return 'User created successfully';
 };
@@ -35,7 +36,7 @@ const login = async (email, password) => {
   if (!isPasswordValid) {
     throw Boom.badRequest('Invalid password');
   }
-  const token = authUtils.generateToken(user.email);
+  const token = authUtils.generateToken(user.email, user.role);
   authUtils.putToken(token);
   return token;
 };

@@ -2,7 +2,7 @@ const Boom = require('@hapi/boom');
 const authServices = require('../services/authService');
 
 const register = async (request, h) => {
-  const { email, password } = request.payload;
+  const { email, password} = request.payload;
   try {
     const user = await authServices.register(email, password);
     return h.response(user).code(200);

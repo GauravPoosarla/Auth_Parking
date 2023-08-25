@@ -2,9 +2,10 @@ const Boom = require('@hapi/boom');
 const jwt = require('jsonwebtoken');
 const redisClient = require('./redis'); // Import the Redis instance
 
-function generateToken(username) {
+function generateToken(username, role) {
   const payload = {
     username,
+    role,
     timestamp: new Date().getTime(),
   };
   return jwt.sign(payload, process.env.SECRET_KEY);
